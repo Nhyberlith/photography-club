@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Pune Photo Collective</title>
+    <style>
+        /* Basic Reset and Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('./zebra.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333; /* Dark text */
+        }
+
+        .signup-container {
+            position: relative;
+            width: 100%;
+            max-width: 360px; /* Reduced max-width */
+            padding: 2rem; /* Reduced padding */
+            background-color: #ffffff; /* White card background */
+            border-radius: 12px; /* Slightly reduced radius */
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08); /* Subtler shadow */
+            border: 1px solid #e9e9e9;
+        }
+
+        .signup-container h1 {
+            margin-bottom: 0.75rem; /* Reduced margin */
+            font-size: 1.8rem; /* Reduced font size */
+            text-align: center;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .signup-container p {
+            margin-bottom: 1.75rem; /* Reduced margin */
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem; /* Slightly smaller font */
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem; /* Reduced margin */
+            text-align: left;
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 0.75rem; /* Adjusted position */
+            left: 0.75rem; /* Adjusted position */
+            font-weight: 600;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.2s ease-out;
+            background-color: #ffffff;
+            padding: 0 0.25rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem; /* Reduced padding */
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Reduced radius */
+            background-color: #fdfdfd;
+            color: #333;
+            font-size: 0.95rem; /* Reduced font size */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Floating label effect */
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label {
+            top: -0.6rem; /* Adjusted position */
+            left: 0.6rem; /* Adjusted position */
+            font-size: 0.75rem; /* Reduced font size */
+            color: #555;
+        }
+
+        .form-group input::placeholder {
+            color: transparent; /* Hide the placeholder text */
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #555;
+            box-shadow: 0 0 0 2px rgba(85, 85, 85, 0.15); /* Reduced shadow size */
+        }
+
+        .btn-signup {
+            display: block;
+            text-align: center;
+            width: 100%;
+            padding: 0.75rem; /* Reduced padding */
+            border: none;
+            border-radius: 6px; /* Reduced radius */
+            background-color: #1f1f1f;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1rem; /* Reduced font size */
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 1.25rem; /* Reduced margin */
+        }
+
+        .btn-signup:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.25rem; /* Reduced margin */
+            font-size: 0.9rem; /* Reduced font size */
+            color: #666;
+        }
+
+        .login-link a {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Welcome</h1>
+        <p>Join the O.A.S.I.S.</p>
+        <form action="login.html">
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder=" " required>
+                <label for="email">Email</label>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder=" " required minlength="7" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 7 or more characters">
+                <label for="password">Password</label>
+            </div>
+            <button type="submit" class="btn-signup">Sign Up</button>
+        </form>
+        <div class="login-link">
+            Already a member? <a href="login.html">Log In</a>
+        </div>
+    </div>
+</body>
+</html>
