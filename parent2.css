@@ -10,8 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: revealUp 2s forwards;
-    animation-timing-function: ease-in;
+    animation: revealUp 2.7s forwards;
+    animation-timing-function: ease-out;
 }
 
 .fade-text {
@@ -31,7 +31,7 @@
 
 .initial, .rest {
     opacity: 0;
-    animation: fadeIn 0.5s forwards;
+    animation: fadeIn 1.2s forwards;
 }
 
 .fade-text .word:nth-child(1) .initial { animation-delay: 0.5s; }
