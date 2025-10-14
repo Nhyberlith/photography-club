@@ -10,8 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: revealUp 3s forwards;
-    animation-timing-function: cubic-bezier(0 , 0 , 0.8 , 0.43);
+    animation: revealUp 2s forwards;
+    animation-timing-function: ease-in;
 }
 
 .fade-text {
@@ -28,10 +28,22 @@
 .logoo{
     display: flex;
 }
+/* Moved inline styles from HTML to CSS for consistency */
+.logoo .logo-img-1 { /* Added specific class for the first image */
+    transform: translateY(-1px) translateX(6px);
+    height: 56px;
+    width: 28px;
+}
+.logoo .logo-img-2 { /* Added specific class for the second image */
+    transform: translateY(-7px);
+    height: 70px;
+    width: 45px;
+}
+
 
 .initial, .rest {
     opacity: 0;
-    animation: fadeIn 1.2s forwards;
+    animation: fadeIn 0.5s forwards;
 }
 
 .fade-text .word:nth-child(1) .initial { animation-delay: 0.5s; }
@@ -78,8 +90,9 @@ html{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
     overflow: hidden;
-  
+    /* scroll-behavior: smooth; -- Removed from HTML to avoid conflicts and handled by JS */
 }
+/* This is the scrolling container */
 .wrapper{
     height: 100vh;
     overflow-y: auto;
@@ -89,6 +102,7 @@ html{
     padding-top: 60px;
     box-sizing: border-box;
     background-color: white; /* Added to prevent header parallax from showing at the end */
+    /* Add smooth scroll here now that JS handles links, or leave it for native scroll if no JS */
     scroll-behavior: smooth;
 }
 nav{
@@ -122,6 +136,9 @@ nav a{
     transition-duration: 0.7s;
     position: relative;
 }
+nav a.home-link { /* Added explicit style for home link */
+    font-weight: bold;
+}
 
 nav a::before {
     content: '';
@@ -154,6 +171,7 @@ nav svg{
 .open-sidebar-button, .close-sidebar-button{
     padding: 0 20px;
     display: none;
+    cursor: pointer;
 }
 
 
@@ -172,6 +190,10 @@ header {
     padding-top: 60px;
     color: white; /* Set text color for all children */
 }
+header h1 { /* Added specific style for h1 */
+    font-size: 3rem;
+}
+
 
 /* --- NEW PARALLAX VIDEO STYLES --- */
 .parallax-video-container {
@@ -180,9 +202,9 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1; /* Placed behind the header content */
+    z-index: -1;
     overflow: hidden;
-    /* This is the key line for the parallax effect, moved from header::before */
+    /* This is the key line for the parallax effect */
     transform: translateZ(-1px) scale(2.2);
 }
 
@@ -199,30 +221,28 @@ header {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Adjust opacity for text readability */
-    z-index: 0; /* Between video and header text */
 }
+
 
 header h1, header p {
     color: white;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    position: relative; /* Ensure text respects z-index */
     z-index: 1; /* Ensure text is above the video overlay */
 }
 
 header * {
     color: white;
-    position: relative; /* Ensure other content within header respects z-index */
+    position: relative;
     font-weight: normal;
     letter-spacing: 0.2em;
     text-align: center ;
     margin: 0px;
     padding: 1em 0;
-    z-index: 1; /* Ensure all direct children are above video overlay */
 }
 
 main {
     position: relative;
-    z-index: 2; /* Main content should be above everything else */
+    z-index: 2;
     background-color: white;
     padding: 2em;
 }
@@ -311,6 +331,10 @@ section h2 {
     line-height: 1.6;
     text-align: center;
 }
+/* Added specific class for the slogan paragraph in contact section */
+p.contact-slogan {
+    color: rgb(150, 150, 150);
+}
 
 #contact {
     text-align: center;
@@ -348,140 +372,96 @@ section h2 {
     margin: 0 auto;
 }
 
+/* --- REPLACE the old .member-card rule with this one --- */
 .member-card {
-    background-color: transparent;
+    background-color: #f9fafb; /* A slightly off-white background */
+    border: 1px solid #e5e7eb;  /* Clean, light grey border */
+    border-radius: 0.75rem;     /* Rounded corners */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Subtle shadow for layering */
     width: 300px;
-    height: 200px;
-    perspective: 1000px;
-}
-
-.member-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.flip-card-checkbox {
-    display: none;
-}
-
-.flip-card-checkbox:checked + .member-card-inner {
-    transform: rotateY(180deg);
-}
-
-.member-card-front, .member-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.member-card-front {
-    background-color: #f0f0f0;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 1.5rem;
-    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
 }
 
-.member-card-back {
-    background-color: #222;
-    color: white;
-    transform: rotateY(180deg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.member-card-back img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.member-card:hover {
+    transform: translateY(-5px); /* Lifts the card up slightly */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* Deeper shadow for a layered effect */
 }
 
 
-.member-card-front h4 {
+.member-card h4 {
     font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
     color: #333;
 }
 
-.member-card-front p {
+.member-card p {
     font-size: 0.95rem;
     color: #666;
     margin: 0;
 }
 
+/* Removing the flip card effects since the HTML structure was simplified for team members */
+/* If you want flip cards, you'll need to reintroduce the inner structure (member-card-inner, front, back) */
 
-@media(max-width:500px){
+
+/* --- Responsive Styles --- */
+@media(max-width:768px){
     .links-container{
-        flex-direction: column;
-        align-items: flex-start;
-        position: fixed;
-        top: 0px;
-        right: 0;
-        z-index: 19;
-        width: 230px;
-        height: 100vh;
-        background-color: transparent;
-        box-shadow: none;
-        backdrop-filter: none;
-        transition: transform 0.6s ease-in-out, opacity 0.3s ease-in-out;
-        transform: translateX(100%);
-        opacity: 0;
-        pointer-events: none;
-        overflow-y: auto;
-    }
+       flex-direction: column;
+       align-items: flex-start;
+       position: fixed;
+       top: 0;
+       right: -300px; /* Initially hidden */
+       z-index: 199;
+       width: 300px;
+       height: 100vh;
+       background-color: rgba(20, 20, 20, 0.9);
+       backdrop-filter: blur(10px);
+       box-shadow: -10px 0 10px rgba(0,0,0,0.1);
+       transition: transform 0.6s ease-in-out;
+       padding-top: 60px;
+   }
 
-    nav a{
-        box-sizing: border-box;
-        height: auto;
-        width: 100%;
-        padding: 20px 30px;
-        justify-content:flex-start;
-        color: white;
-    }
-    nav .home-link{
-        color: var(--text-color);
-    }
-    #overlay{
-        position: fixed;
-        inset: 0;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease-in-out;
-    }
-    .open-sidebar-button, .close-sidebar-button{
-        padding:20px;
-        display: block;
-    }
-    #sidebar-active:checked~ .links-container{
-        transform: translateX(0);
-        opacity: 1;
-        pointer-events: auto;
-        background-color: rgba(91, 91, 91, 0.2);
-        box-shadow: -10px 0 10px rgba(0,0,0,0.1);
-        backdrop-filter: blur(10px);
-    }
-    #sidebar-active:checked~ #overlay{
-        background-color: rgba(0,0,0,0.25);
-        opacity: 1;
-        pointer-events: auto;
-        z-index: 9;
-    }
+   #sidebar-active:checked ~ .links-container{
+       transform: translateX(-300px);
+   }
+
+   nav a{
+       box-sizing: border-box;
+       height: auto;
+       width: 100%;
+       padding: 20px 30px;
+       justify-content:flex-start;
+       color: white;
+   }
+   nav .home-link{
+       color: var(--text-color); /* This should likely be white when sidebar is open */
+   }
+   #overlay{
+       position: fixed;
+       inset: 0;
+       background-color: rgba(0,0,0,0.5);
+       opacity: 0;
+       pointer-events: none;
+       transition: opacity 0.3s ease-in-out;
+       z-index: 198;
+   }
+   
+   #sidebar-active:checked ~ #overlay{
+       opacity: 1;
+       pointer-events: auto;
+   }
+
+   .open-sidebar-button, .close-sidebar-button{
+       padding: 0 20px;
+       display: block;
+   }
 }
 
-/* --- FOOTER STYLES (FIXED) --- */
+/* --- FOOTER STYLES --- */
 footer {
     position: relative;
     background: #1f1f1f;
@@ -750,12 +730,13 @@ footer .bottom-details .bottom_text {
     }
 }
 .gradient-text {
-  text-decoration: none;
-  background: linear-gradient(90deg, rgba(131, 58, 180, 1) 21%, rgba(255, 60, 0, 1) 84%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  /* Optional: for better display */
-  display: inline-block;
-  font-weight: bold;
+text-decoration: none;
+background: linear-gradient(90deg, rgba(131, 58, 180, 1) 21%, rgba(255, 60, 0, 1) 84%);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+/* Optional: for better display */
+display: inline-block;
+font-weight: bold;
 }
+
