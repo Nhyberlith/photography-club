@@ -3,8 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Pune Photo Collective</title>
+    <title>Login - O.A.S.I.S.</title>
     <style>
+        /* --- INTRO ANIMATION --- */
+
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOutOverlay 1s ease-in 2s forwards;
+        }
+
+        .intro-text {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #333;
+            overflow: hidden; 
+        }
+
+        .intro-text span {
+            display: inline-block;
+            opacity: 0;
+            /* MODIFIED: Changed from translateY to translateX for horizontal slide */
+            transform: translateX(-100%);
+            /* MODIFIED: Renamed animation for clarity */
+            animation: slideInLetter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        /* Staggered animation delays for each letter */
+        .intro-text span:nth-child(1) { animation-delay: 0.2s; }
+        .intro-text span:nth-child(2) { animation-delay: 0.3s; }
+        .intro-text span:nth-child(3) { animation-delay: 0.4s; }
+        .intro-text span:nth-child(4) { animation-delay: 0.5s; }
+        .intro-text span:nth-child(5) { animation-delay: 0.6s; }
+        .intro-text span:nth-child(6) { animation-delay: 0.7s; }
+        .intro-text span:nth-child(7) { animation-delay: 0.8s; }
+        .intro-text span:nth-child(8) { animation-delay: 0.9s; }
+        .intro-text span:nth-child(9) { animation-delay: 1.0s; }
+
+
         /* Basic Reset and Font */
         * {
             margin: 0;
@@ -18,12 +63,8 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: #333; /* Dark text */
-            
-            /* --- LOCAL BACKGROUND IMAGE --- */
-            /* Make sure you have a folder named 'images' with this image file inside it */
+            color: #333;
             background-image: url('https://images.pexels.com/photos/34435/pexels-photo.jpg'); 
-            
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -31,15 +72,14 @@
         }
 
         .login-container {
+            opacity: 0;
+            animation: fadeInContent 1s ease-in 2s forwards;
             position: relative;
             width: 100%;
             max-width: 360px;
             padding: 2rem;
-            
-            /* Added a semi-transparent background to make text readable */
             background-color: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(5px); /* Optional: Adds a blur effect to the background behind the container */
-            
+            backdrop-filter: blur(5px);
             border-radius: 12px;
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
             border: 1px solid #e9e9e9;
@@ -89,7 +129,6 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Floating label effect */
         .form-group input:focus + label,
         .form-group input:not(:placeholder-shown) + label {
             top: -0.6rem;
@@ -154,9 +193,40 @@
         .signup-link a:hover {
             text-decoration: underline;
         }
+        
+        /* --- KEYFRAMES FOR ANIMATIONS --- */
+
+        /* MODIFIED: Renamed and updated for horizontal slide */
+        @keyframes slideInLetter {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeOutOverlay {
+            to {
+                opacity: 0;
+                visibility: hidden; 
+                pointer-events: none;
+            }
+        }
+
+        @keyframes fadeInContent {
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <div class="intro-overlay">
+        <div class="intro-text">
+            <span>O</span><span>.</span><span>A</span><span>.</span><span>S</span><span>.</span><span>I</span><span>.</span><span>S</span>
+        </div>
+    </div>
+
     <div class="login-container">
         <h1>Member Login</h1>
         <p>Welcome back to the O.A.S.I.S.!</p>
@@ -173,7 +243,7 @@
             <button type="button" class="btn-login" onclick="window.location.href='home.html'">Login</button>
         </form>
         <div class="signup-link">
-            Not a member? <a href="signin.html">Sign Up</a>
+            Not a member? <a href="#">Sign Up</a>
         </div>
     </div>
 </body>
