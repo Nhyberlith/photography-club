@@ -10,8 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: revealUp 2.7s forwards;
-    animation-timing-function: ease-out;
+    animation: revealUp 2s forwards;
+    animation-timing-function: ease-in;
 }
 
 .fade-text {
@@ -31,7 +31,7 @@
 
 .initial, .rest {
     opacity: 0;
-    animation: fadeIn 1.2s forwards;
+    animation: fadeIn 0.5s forwards;
 }
 
 .fade-text .word:nth-child(1) .initial { animation-delay: 0.5s; }
@@ -156,53 +156,72 @@ nav svg{
 }
 
 
-/* --- PARALLAX --- */
+/* --- PARALLAX SECTION --- */
 header {
     box-sizing: border-box;
-    position: relative;
+    position: relative; /* This must be relative for the absolute video container */
     min-height: calc(100vh - 60px);
     height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform-style: preserve-3d;
+    transform-style: preserve-3d; /* This is crucial for the parallax effect */
     margin-top: -60px;
     padding-top: 60px;
+    color: white; /* Set text color for all children */
 }
 
-header::before {
-    content: '';
+/* --- NEW PARALLAX VIDEO STYLES --- */
+.parallax-video-container {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1;
-    background-image: url('https://images.unsplash.com/photo-1488866022504-f2584929ca5f?q=80&w=2062');
-    background-size: cover;
-    background-position: center;
+    z-index: -1; /* Placed behind the header content */
+    overflow: hidden;
+    /* This is the key line for the parallax effect, moved from header::before */
     transform: translateZ(-1px) scale(2.2);
+}
+
+#parallax-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the container without distortion */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust opacity for text readability */
+    z-index: 0; /* Between video and header text */
 }
 
 header h1, header p {
     color: white;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    position: relative; /* Ensure text respects z-index */
+    z-index: 1; /* Ensure text is above the video overlay */
 }
 
 header * {
     color: white;
-    position: relative;
+    position: relative; /* Ensure other content within header respects z-index */
     font-weight: normal;
     letter-spacing: 0.2em;
     text-align: center ;
     margin: 0px;
     padding: 1em 0;
+    z-index: 1; /* Ensure all direct children are above video overlay */
 }
 
 main {
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Main content should be above everything else */
     background-color: white;
     padding: 2em;
 }
@@ -739,5 +758,4 @@ footer .bottom-details .bottom_text {
   display: inline-block;
   font-weight: bold;
 }
-
 
