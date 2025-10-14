@@ -1,4 +1,4 @@
-/* --- Preloader Styles --- */
+/* --- Preloader --- */
 #preloader {
     position: fixed;
     top: 0;
@@ -60,7 +60,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Added for consistent box model */
+    box-sizing: border-box;
 }
 body{
     min-height: 100vh;
@@ -75,7 +75,6 @@ html{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
     overflow: hidden;
-    scroll-behavior: smooth; /* For smooth scrolling */
 }
 .wrapper{
     height: 100vh;
@@ -85,7 +84,8 @@ html{
     transform-style: preserve-3d;
     padding-top: 60px;
     box-sizing: border-box;
-    background-color: white; /* Added to prevent header parallax from showing at the end */
+    background-color: white;
+    scroll-behavior: smooth;
 }
 nav{
     height: 60px;
@@ -281,7 +281,7 @@ section h2 {
     font-size: 0.9rem;
 }
 
-/* --- About & Contact Section Styles --- */
+/* --- About & Contact Section --- */
 #about p, #contact p {
     max-width: 800px;
     margin: 0 auto 1.5rem auto;
