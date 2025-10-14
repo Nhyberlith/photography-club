@@ -81,15 +81,14 @@ html{
   
 }
 .wrapper{
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    perspective: 1px;
-    transform-style: preserve-3d;
-    padding-top: 60px;
-    box-sizing: border-box;
-    background-color: white; /* Added to prevent header parallax from showing at the end */
-    scroll-behavior: smooth;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Perspective and transform-style removed */
+    padding-top: 60px;
+    box-sizing: border-box;
+    background-color: white; 
+    scroll-behavior: smooth; /* <-- This will now work correctly */
 }
 nav{
     height: 60px;
@@ -159,18 +158,22 @@ nav svg{
 
 /* --- PARALLAX SECTION --- */
 header {
-    box-sizing: border-box;
-    position: relative; /* This must be relative for the absolute video container */
-    min-height: calc(100vh - 60px);
-    height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform-style: preserve-3d; /* This is crucial for the parallax effect */
-    margin-top: -60px;
-    padding-top: 60px;
-    color: white; /* Set text color for all children */
+    box-sizing: border-box;
+    position: relative; 
+    min-height: calc(100vh - 60px);
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d; 
+    margin-top: -60px;
+    padding-top: 60px;
+    color: white;
+    /* --- ADD THESE THREE LINES --- */
+    perspective: 1px;
+    overflow: hidden; /* Important: contains the scaled video */
+    transform-style: preserve-3d;
 }
 
 /* --- NEW PARALLAX VIDEO STYLES --- */
