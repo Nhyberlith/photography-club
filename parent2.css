@@ -78,7 +78,7 @@ html{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
     overflow: hidden;
-    scroll-behavior: smooth; /* For smooth scrolling */
+  
 }
 .wrapper{
     height: 100vh;
@@ -89,6 +89,7 @@ html{
     padding-top: 60px;
     box-sizing: border-box;
     background-color: white; /* Added to prevent header parallax from showing at the end */
+    scroll-behavior: smooth;
 }
 nav{
     height: 60px;
